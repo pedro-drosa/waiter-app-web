@@ -1,3 +1,10 @@
+import { GlobalStyles } from './styles/GlobalStyle';
+
 export function App() {
-  return <h1>waiterapp</h1>;
+  return (
+    <>
+      <GlobalStyles />
+      <h1>waiterapp</h1>;
+    </>
+  );
 }
