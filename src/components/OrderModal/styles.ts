@@ -118,6 +118,11 @@ export const Actions = styled.footer`
   flex-direction: column;
   margin-top: 32px;
 
+  button:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+
   .primary {
     background-color: #333;
     border-radius: 48px;
