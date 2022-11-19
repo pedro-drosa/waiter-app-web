@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import socketIo from 'socket.io-client';
 import { OrdersBoard } from '../OrdersBoard';
 import { Container } from './styles';
 import { Order } from '../../types/Order';
@@ -6,6 +7,15 @@ import { api } from '../../libs/axios';
 
 export function Orders() {
   const [orders, setOrders] = useState<Order[]>([]);
+
+  useEffect(() => {
+    const io = socketIo('http://localhost:5000', {
+      transports: ['websocket'],
+    });
+    io.on('order@new', (order) => {
+      setOrders((prevState) => [...prevState, order]);
+    });
+  }, []);
 
   useEffect(() => {
     api.get('/orders').then((response) => setOrders(response.data));
